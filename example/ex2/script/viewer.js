@@ -9,3 +9,4 @@
         $('main').find('#' + viewId).addClass('active');
     }
 })(store || (store = {}));
+//condition for function

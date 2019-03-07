@@ -13,8 +13,14 @@
             var store;
         </script>
         <script src= "script/viewer.js"></script>
+        <script src= "script/inventory.js"></script>
+        <script src= "script/cart.js"></script>
+        <script src= "script/homeView.js"></script>
+        <script src= "script/itemView.js"></script>
+        <script src= "script/cartView.js"></script>
     </head>
-    <body onload="store.viewer.changeView('homeView')">
+    <body class = "container"  
+        onload = "store.homeView.load()">
         <header>
             <h1>
                 JS Store
@@ -23,9 +29,21 @@
         <main>
             <div id="homeView">
                 <h2>Home</h2> 
+                <ul id="homeView_list" class="list-group"></ul>
             </div>
             <div id="itemView">
-                <h2>Item Detail</h2>
+                <img src="http://placehold.it/300x300"
+                    class= "float-left mr-2 mb-2">
+                <h2 id= "itemView_title"> </h2>
+                <p id ="itemView_description"> </p>
+                <spam id="itemView_price"></h2>
+            
+                <button class="btn btn-secondary"
+                    onclick="store.homeView.load()">
+                </button>
+                <button class="btn btn-primary"
+                    onclick="store.itemView,addToCart()">
+                </button>
             </div>
             <div id="cartView">
                 <h2>Cart</h2>
