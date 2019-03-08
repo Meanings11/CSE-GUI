@@ -6,7 +6,7 @@
 <head>
     <title>Homework #2</title>
     <!-- Add your viewport meta tag -->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Visit http://getbootstrap.com/ and scroll down to Bootstrap CDN. Add CSS reference shown there. -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- You will want to have a local style.css to override and customize styles -->
@@ -17,42 +17,98 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Don't forget your local scripts.js file. There is much code already written for you. -->
     <script src="scripts.js"></script>
+    
 </head>
 
 
 <body class="container">
     <!-- Browse the components and utilities sections under documentation at http://getbootstrap.com/. There, you will find the modal, tabs, navigation bar, side panel and other features shown in the video. See my pointers in red in the attached screenshots. Please note that my CSS file only contained 5-6 style definitions. The rest were made possible with Bootstrap alone. -->
-    <nav class = "navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src = "./images/LogoLyle.png" alt="lyle logo"/>
-        </a>
+   <div class="container-fluid">
+        <nav class = "navbar navbar-dark bg-primary ">
         
-        <div id="navbarNav">
-            <ul class="navbar-nav">
+        <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                        <img src = "./images/LogoLyle.png" alt="lyle logo"/>
+                    </a>
+        </div>
+        
+
+        <div>
+            <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item active">
                     <a class = "nav-link" href="#">Schedule<a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav item active">
                     <a class = "nav-link" href="#">Grades</a>
                 </li>
-                <li class="nav-item active">
+                <li class=" nav item active">
                     <a class = "nav-link" href=#>Faculty</a>
                 </li>
-                <li class="nav-item active">
-                        <a class = "nav-link" href=#>My Account</a>
-                </li>
-            </ul>
+                <li class="nav-item dropdown active">
+                    <a class = "nav-link dropdown-toggle" data-toggle = "dropdown" id= "navbarDropdown" role="button" href=# aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Update Profile</a>
+                                    <a class="dropdown-item" href="#">Change Password</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Logout</a>
+                        </div> 
+                </li>  
         </div>
-    </nav>
 
-    <main>
-    <h2 id="main-title">
-            Schedule
-        </h2>
-        <button class="btn btn-success" type="button" id="add-course-btn">
-            Add Course 
-        </button>
-    </main>
+        </nav>
+    </div>
+
+    <div class="row mt-3">   
+            <main class="col-sm-9">
+            <h2 id="main-title">
+                    Schedule
+                </h2>
+                <button class="btn btn-success" type="button" id="add-course-btn">
+                    Add Course 
+                </button>
+        
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" role="tab" aria-selected="true">Fall 2017</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" role="tab" aria-selected="false">Spring 2018</a>
+                    </li>
+                </ul>
+        
+                <div class="tab-content">
+                    <!-- <table class="table">
+                        <tread>
+                            <tr>
+                                <th>Course</th>
+                                <th>Title</th>
+                                <th>Section</th>
+                                <th>Instructor</th>
+                                <th>Location</th>
+                            </tr>
+                        </tread>
+                    </table> -->
+                    <div class="alert alert-primary" role="alert">
+                        You have not regisered for <b>Spring 2018</b>. Click 'Add Course'to complete registration.
+                    </div>
+                </div>
+            </main>
+
+            <aside class="col-sm-3">
+                    <div class="card">
+                            <img src="./images/smu.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Course Catalog</h5>
+                              <p class="card-text">Click below to view the full undergraduate course catalog.</p>
+                              <a href="#" class="btn btn-primary">View Catalog</a>
+                            </div>
+                    </div>   
+            </aside>
+    </div>
+    
+
 </body>
 
 </html>

@@ -1,20 +1,23 @@
-﻿.navbar-nav{
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-}
-
-nav li{
+﻿/* nav li{
     margin-right: 1em;
-}
+} */
 
 #main-title{
     display: inline-block;
-    margin-top: .5em;
 }
 
 #add-course-btn{
     float: right;
-    margin-top: .5em;
 }
 
+.container-fluid{
+    padding: 0;
+}
+
+.navbar-nav{
+    flex-direction: row;
+}
+
+.navbar-nav li{
+    margin-right: 1em;
+}
