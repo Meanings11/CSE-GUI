@@ -66,13 +66,26 @@ window.onload = function () {
     ];
 
     controls = {
-        fallRegistrationTableBody: $('XXX'), // apply selector for fall registation table body
-        springRegistrationTableBody: $('XXX'), // apply selector for spring registation table body
-        noFallRegistrationMessage: $('XXX'), // apply selector for no fall registation message
-        noSpringRegistrationMessage: $('XXX'), // apply selector for no spring registation message
-        semesterField: $('XXX'), // apply selector for semester field (select)
-        courseField: $('XXX'), // apply selector for course field (select)
-        sectionField: $('XXX') // apply selector for section field (select)
+        fallRegistrationTableBody: $('#fall-table'), // apply selector for fall registation table body
+        springRegistrationTableBody: $('#spring-table'), // apply selector for spring registation table body
+       
+        noFallRegistrationMessage: $('#fall-alert'), // apply selector for no fall registation message
+        noSpringRegistrationMessage: $('#spring-alert'), // apply selector for no spring registation message
+        
+        // apply selector for semester field (select)
+        semesterField: $('#semester-select').append('<option></option><option value = "0">Fall 2017</option><option value ="1">Spring 2018</option>'), 
+        
+        // apply selector for course field (select)
+        courseField: $('#course-select'),
+        // append(
+        // `<option value = "0">${courseCatalog[0].number}-${courseCatalog[0].title}</option>
+        // <option value = "1">${courseCatalog[1].number}-${courseCatalog[1].title}</option>
+        // <option value = "2">${courseCatalog[2].number}-${courseCatalog[2].title}</option>
+        // <option value = "3">${courseCatalog[3].number}-${courseCatalog[3].title}</option>
+        // <option value = "4">${courseCatalog[4].number}-${courseCatalog[4].title}</option>`),
+        
+        // apply selector for section field (select)
+        sectionField: $('#section-select')
     };
 
     lists = {
@@ -106,6 +119,9 @@ window.onload = function () {
                 // add course option to resulting string
                 // format: <option value="0">CSE3345 - GRAPHICAL USER INTERFACE DESIGN AND IMPLEMENTATION</option>
                 // (0 = i)
+                courseField.append(`<option value = "${i}">${courseCatalog[i].number}-${courseCatalog[i].title}</option>`)
+
+
             });
 
             // set result to controls.courseField.html
@@ -126,9 +142,9 @@ window.onload = function () {
             // set result to controls.sectionField.html
         },
         onAddCourseClick: function() { // this method needs to be called from html at the appropriate time. Don't forget "events."
-            var semesterIndex = undefined; // instead of undefined, retreive val from controls.semesterField (use + to convert string to number)
-            var courseIndex = undefined; // instead of undefined, retreive val from controls.courseField (use + to convert string to number)
-            var sectionIndex = undefined; // instead of undefined, retreive val from controls.sectionField (use + to convert string to number)
+            var semesterIndex = +controls.semesterField.val(); // instead of undefined, retreive val from controls.semesterField (use + to convert string to number)
+            var courseIndex = +controls.courseField.val(); // instead of undefined, retreive val from controls.courseField (use + to convert string to number)
+            var sectionIndex = +controls.sectionField.val(); // instead of undefined, retreive val from controls.sectionField (use + to convert string to number)
 
             var course = undefined; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
             var section = undefined; // instead of undefined, use sectionIndex to assign to the right section in the course.sections array
@@ -143,6 +159,10 @@ window.onload = function () {
 
             // use val method to set value of controls.semesterField to '', thereby clearing selection
             // do the same for courseField and sectionField 
+            controls.semesterField.val() = '';
+            controls.courseField.val() = '';
+            controls.sessionField.val() = '';
+            
         }
     };
 
