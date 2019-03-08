@@ -2,14 +2,27 @@
 
 function Course(number, title, sections) {
 	// assign values passed to prototype
+    this.number = number;
+    this.title = title;
+    this.sections = sections;
 }
 
 function Section(number, instructor, schedule, location) {
-	// assign values passed to prototype
+    // assign values passed to prototype
+    this.number = number;
+    this.instructor = instructor;
+    this.schedule = schedule;
+    this.location = location;
 }
 
 function Registration(course, title, section, instructor, schedule, location) {
-	// assign values passed to prototype
+    // assign values passed to prototype
+    this.course = course;
+    this.title = title;
+    this.section = section;
+    this.instructor = instructor;
+    this.schedule = schedule;
+    this.location = location;
 }
 
 var courseCatalog;
