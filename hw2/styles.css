@@ -21,3 +21,7 @@
 .navbar-nav li{
     margin-right: 1em;
 }
+
+.navbar-nav .dropdown-menu {
+    position:absolute;
+  }
