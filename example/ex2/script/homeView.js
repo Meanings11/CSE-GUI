@@ -16,14 +16,13 @@
     }
     function bindProducts(){
         var items = store.inventory.listAll();
-        var listItems = items.map(item => 
+        var listItems = items.map(item=> 
             `<li class="list-group-item">
                 <a href="javascript:void(0);"
-                onclick="store.itemView.load(${item.itemId})">
-                ${item.name}
+                onclick="store.itemView.load(${item.itemId})">${item.name}
                 </a>
             </li>`);
         
-        $('#homeView_list').html(listItems.join(''))
+        $('#homeView_list').html(listItems.join(''))    //jquery
     }
 })(store|| (store = {}));
