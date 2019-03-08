@@ -112,17 +112,30 @@
         </div>
     </div>
         
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" role="tab" aria-selected="true">Fall 2017</a>
+                        <a class="nav-link active" href="#fall"  role="tab" data-toggle="tab" aria-controls="fall" aria-selected="true">Fall 2017</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" role="tab" aria-selected="false">Spring 2018</a>
+                        <a class="nav-link" href="#spring" role="tab" data-toggle="tab" aria-controls="spring" aria-selected="false">Spring 2018</a>
                     </li>
                 </ul>
         
-                <div class="tab-content">
-                    <table class="table">
+                <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="fall" role="tabpanel" aria-labelledby="fall-tab">
+                            <div class="alert alert-primary" role="alert">
+                                You have not regisered for <b>Fall 2017</b>. Click 'Add Course'to complete registration.
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="spring" role="tabpanel" aria-labelledby="spring-tab">
+                                <div class="alert alert-primary" role="alert">
+                                    You have not regisered for <b>Spring 2018</b>. Click 'Add Course'to complete registration.
+                                </div>
+                            </div>
+                </div>
+
+                
+                    <!-- <table class="table">
                         <tread>
                             <tr>
                                 <th>Course</th>
@@ -132,11 +145,9 @@
                                 <th>Location</th>
                             </tr>
                         </tread>
-                    </table>
-                    <!-- <div class="alert alert-primary" role="alert">
-                        You have not regisered for <b>Spring 2018</b>. Click 'Add Course'to complete registration.
-                    </div> -->
-                </div>
+                    </table> -->
+                    
+
             </main>
 
             <aside class="col-sm-3">
