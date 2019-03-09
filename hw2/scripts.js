@@ -174,9 +174,12 @@ window.onload = function () {
             controls.semesterField.val('');
             controls.courseField.val('');
             controls.sectionField.val('');
+
+            $('#exampleModal').modal('toggle')
         }
     };
 
     // call events.onRegistrationChange to do initial binding, showing and hiding
     events.onRegistrationChange();
+    
 }
