@@ -25,3 +25,23 @@
 .navbar-nav .dropdown-menu {
     position:absolute;
   }
+
+
+.modal-header{
+    background: grey;
+    color: white;
+}
+
+body.container{
+    padding: 0;
+}
+
+.tab-pane{
+    border: solid .5px lightgray;
+    border-top: 0;
+    padding:10px;
+}
+
+.tab-pane > {
+    margin-bottom: 0;
+}
