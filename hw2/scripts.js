@@ -111,7 +111,7 @@ window.onload = function () {
             // call bindTable w/ list.fall, controls.fallRegistrationTableBody and controls.noFallRegistrationMessage
             // do same for spring
         },
-        onSemeseterChange: function () { // this method needs to be called from html at the appropriate time. Don't forget "events."
+        onSemesterChange: function () { // this method needs to be called from html at the appropriate time. Don't forget "events."
             var result = '<option></option>'; // this ensures empty default option
 
             courseCatalog.forEach(function (c, i) {
@@ -119,41 +119,48 @@ window.onload = function () {
                 // add course option to resulting string
                 // format: <option value="0">CSE3345 - GRAPHICAL USER INTERFACE DESIGN AND IMPLEMENTATION</option>
                 // (0 = i)
-                courseField.append(`<option value = "${i}">${courseCatalog[i].number}-${courseCatalog[i].title}</option>`)
-
+                controls.courseField.append(`<option value = "${i}">${courseCatalog[i].number} - ${courseCatalog[i].title}</option>`)
 
             });
 
             // set result to controls.courseField.html
+            result = controls.courseField.html();
+            // console.log(result);
         },
         onCourseChange: function() { // this method needs to be called from html at the appropriate time. Don't forget "events."
             var result = '<option></option>'; // this ensures empty default option
 
             var courseIndex = +controls.courseField.val();
-            var course = undefined; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
+            var course = courseCatalog[courseIndex]; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
 
             course.sections.forEach(function(s, i) {
                 // s = section, i = index
                 // add section option to result string
                 // format: <option value="0">TuTh 11:00AM - 12:20PM (Steve Labova)</option>
                 // (0 = i)
+                controls.sectionField.append(`<option value = "${i}">${course.sections[i].schedule} ( ${course.sections[i].instructor})</option>`)
             });
 
             // set result to controls.sectionField.html
+            result = controls.sectionField.html();
         },
         onAddCourseClick: function() { // this method needs to be called from html at the appropriate time. Don't forget "events."
             var semesterIndex = +controls.semesterField.val(); // instead of undefined, retreive val from controls.semesterField (use + to convert string to number)
             var courseIndex = +controls.courseField.val(); // instead of undefined, retreive val from controls.courseField (use + to convert string to number)
             var sectionIndex = +controls.sectionField.val(); // instead of undefined, retreive val from controls.sectionField (use + to convert string to number)
 
-            var course = undefined; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
-            var section = undefined; // instead of undefined, use sectionIndex to assign to the right section in the course.sections array
+            var course = courseCatalog[courseIndex]; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
+            var section = course.sections[sectionIndex]; // instead of undefined, use sectionIndex to assign to the right section in the course.sections array
 
-            var registration = new Registration(); // populate arguments of contructor from course and section
+            var registration = new Registration(course,course.title,section,section.instructor,section.schedule,section.location); // populate arguments of contructor from course and section
 
             // switch on semesterIndex
             // if 0, add registation to lists.fall
             // if 1, add registation to lists.spring
+            if(semesterIndex)
+                lists.spring.push(registration);
+            else
+                lists.fall.push(registration);
 
             // call event.onRegistrationChange
 
