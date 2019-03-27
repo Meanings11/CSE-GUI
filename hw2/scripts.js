@@ -2,14 +2,27 @@
 
 function Course(number, title, sections) {
 	// assign values passed to prototype
+    this.number = number;
+    this.title = title;
+    this.sections = sections;
 }
 
 function Section(number, instructor, schedule, location) {
-	// assign values passed to prototype
+    // assign values passed to prototype
+    this.number = number;
+    this.instructor = instructor;
+    this.schedule = schedule;
+    this.location = location;
 }
 
 function Registration(course, title, section, instructor, schedule, location) {
-	// assign values passed to prototype
+    // assign values passed to prototype
+    this.course = course;
+    this.title = title;
+    this.section = section;
+    this.instructor = instructor;
+    this.schedule = schedule;
+    this.location = location;
 }
 
 var courseCatalog;
@@ -53,13 +66,20 @@ window.onload = function () {
     ];
 
     controls = {
-        fallRegistrationTableBody: $('XXX'), // apply selector for fall registation table body
-        springRegistrationTableBody: $('XXX'), // apply selector for spring registation table body
-        noFallRegistrationMessage: $('XXX'), // apply selector for no fall registation message
-        noSpringRegistrationMessage: $('XXX'), // apply selector for no spring registation message
-        semesterField: $('XXX'), // apply selector for semester field (select)
-        courseField: $('XXX'), // apply selector for course field (select)
-        sectionField: $('XXX') // apply selector for section field (select)
+        fallRegistrationTableBody: $('#fall-tbody'), // apply selector for fall registation table body
+        springRegistrationTableBody: $('#spring-tbody'), // apply selector for spring registation table body
+       
+        noFallRegistrationMessage: $('#fall-alert'), // apply selector for no fall registation message
+        noSpringRegistrationMessage: $('#spring-alert'), // apply selector for no spring registation message
+        
+        // apply selector for semester field (select)
+        semesterField: $('#semester-select').append('<option></option><option value = "0">Fall 2017</option><option value ="1">Spring 2018</option>'), 
+        
+        // apply selector for course field (select)
+        courseField: $('#course-select'),
+       
+        // apply selector for section field (select)
+        sectionField: $('#section-select')
     };
 
     lists = {
@@ -74,18 +94,30 @@ window.onload = function () {
 
                 list.forEach(function (registration) {
                     // build html row using string
+                    result += `<tr><td>${registration.course}</td><td>${registration.title}</td><td>${registration.section}</td><td>${registration.instructor}</td><td>${registration.schedule}</td><td>${registration.location}</td></tr>`;
                 });
 
                 // use tableBody.html method to assign result
+                tableBody.html(result);
 
                 // if list.length, hide noItemMessage (use hide method) and show tableBody's parent (use parent method)
+                if(list.length>0){
+                    noItemMessage.hide();
+                    tableBody.parent().show();
+                }
                 // else show noItemMessage (use show method) and hide tableBody's parent (use parent method)
+                else{
+                    noItemMessage.show();
+                    tableBody.parent().hide();
+                }
             };
 
             // call bindTable w/ list.fall, controls.fallRegistrationTableBody and controls.noFallRegistrationMessage
             // do same for spring
+            bindTable(lists.fall,controls.fallRegistrationTableBody,controls.noFallRegistrationMessage);
+            bindTable(lists.spring,controls.springRegistrationTableBody,controls.noSpringRegistrationMessage);
         },
-        onSemeseterChange: function () { // this method needs to be called from html at the appropriate time. Don't forget "events."
+        onSemesterChange: function () { // this method needs to be called from html at the appropriate time. Don't forget "events."
             var result = '<option></option>'; // this ensures empty default option
 
             courseCatalog.forEach(function (c, i) {
@@ -93,45 +125,58 @@ window.onload = function () {
                 // add course option to resulting string
                 // format: <option value="0">CSE3345 - GRAPHICAL USER INTERFACE DESIGN AND IMPLEMENTATION</option>
                 // (0 = i)
+                result += `<option value = "${i}">${courseCatalog[i].number} - ${courseCatalog[i].title}</option>`;
+
             });
 
             // set result to controls.courseField.html
+            controls.courseField.html(result);
         },
         onCourseChange: function() { // this method needs to be called from html at the appropriate time. Don't forget "events."
             var result = '<option></option>'; // this ensures empty default option
 
             var courseIndex = +controls.courseField.val();
-            var course = undefined; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
+            var course = courseCatalog[courseIndex]; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
 
             course.sections.forEach(function(s, i) {
                 // s = section, i = index
                 // add section option to result string
                 // format: <option value="0">TuTh 11:00AM - 12:20PM (Steve Labova)</option>
                 // (0 = i)
+                result += `<option value = "${i}">${course.sections[i].schedule} ( ${course.sections[i].instructor})</option>`;
             });
 
             // set result to controls.sectionField.html
+            controls.sectionField.html(result);
         },
         onAddCourseClick: function() { // this method needs to be called from html at the appropriate time. Don't forget "events."
-            var semesterIndex = undefined; // instead of undefined, retreive val from controls.semesterField (use + to convert string to number)
-            var courseIndex = undefined; // instead of undefined, retreive val from controls.courseField (use + to convert string to number)
-            var sectionIndex = undefined; // instead of undefined, retreive val from controls.sectionField (use + to convert string to number)
+            var semesterIndex = +controls.semesterField.val(); // instead of undefined, retreive val from controls.semesterField (use + to convert string to number)
+            var courseIndex = +controls.courseField.val(); // instead of undefined, retreive val from controls.courseField (use + to convert string to number)
+            var sectionIndex = +controls.sectionField.val(); // instead of undefined, retreive val from controls.sectionField (use + to convert string to number)
 
-            var course = undefined; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
-            var section = undefined; // instead of undefined, use sectionIndex to assign to the right section in the course.sections array
+            var course = courseCatalog[courseIndex]; // instead of undefined, use courseIndex to assign to the right course in the courseCatalog array
+            var section = course.sections[sectionIndex]; // instead of undefined, use sectionIndex to assign to the right section in the course.sections array
 
-            var registration = new Registration(); // populate arguments of contructor from course and section
+            var registration = new Registration(course.number,course.title,section.number,section.instructor,section.schedule,section.location); // populate arguments of contructor from course and section
 
             // switch on semesterIndex
             // if 0, add registation to lists.fall
             // if 1, add registation to lists.spring
+            if(semesterIndex)
+                lists.spring.push(registration);
+            else
+                lists.fall.push(registration);
 
             // call event.onRegistrationChange
-
+            events.onRegistrationChange();
             // use val method to set value of controls.semesterField to '', thereby clearing selection
             // do the same for courseField and sectionField 
+            controls.semesterField.val('');
+            controls.courseField.val('');
+            controls.sectionField.val('');
         }
     };
 
-    // call event.onRegistrationChange to do initial binding, showing and hiding
+    // call events.onRegistrationChange to do initial binding, showing and hiding
+    events.onRegistrationChange();
 }
