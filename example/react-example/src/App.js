@@ -6,7 +6,12 @@ import {Editor} from './Editor.jsx';
 
 class App extends Component {
   state ={
-    editMode: false
+    editMode: false,
+    items: [
+      {id: 1, name: 'Foo'},
+      {id: 2, name: 'Bar'},
+      {id: 3, name: 'Baz'}
+    ]
   };
 
   onToggleEditMode = () => {
@@ -17,13 +22,11 @@ class App extends Component {
     return (
       //blank tag to render all children
       <>
-        <Header toggleEditnode={()=> this.onToggleEditMode()}/>
-        {
-         (this.state.editMode)&& <Editor/>
+        <Header editMode={this.state.editMode} toggleEditMode={() => this.onToggleEditMode()}/>
          <ul>
-           {this.state.items.map((item,index))=>(<li key={index}>{item.name}</li>))}
+           {this.state.items.map((item, index)=>(<li key={index}>{item.name}</li>))}
          </ul>
-        }
+         { this.state.editMode && <Editor />}
       </>
     );
   }
