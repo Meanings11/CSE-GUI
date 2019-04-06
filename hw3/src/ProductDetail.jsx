@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Product} from './models/Product';
 import {ProductReview} from './models/ProductReview';
+import {ReviewList} from './ReviewList';
 
 export class ProductDetail extends React.Component{
 
@@ -26,14 +27,15 @@ export class ProductDetail extends React.Component{
             </nav>
 
             <div className ="jumbotron">
-                
-                <div className = "float-left product-img mr-4 ml-1">  
-                    <img src = {this.state.product.imageUrl} width="200" height="300"/>
-                </div>
+                <div className = "pb-5 pt-3">
+                    <div className = "float-left product-img mr-4 ml-2">  
+                        <img src = {this.state.product.imageUrl} width="180" height="240"/>
+                    </div>
 
-                <h1>{this.state.product.name}</h1>
-                <h3><span class="badge badge-lg badge-primary">{this.state.product.price}</span></h3>
-                <p>{this.state.product.description}</p>
+                    <h1>{this.state.product.name}</h1>
+                    <h3><span class="badge badge-lg badge-primary">{this.state.product.price}</span></h3>
+                    <p>{this.state.product.description}</p>
+                </div>
             </div>
             </main>
         );
