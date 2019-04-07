@@ -1,25 +1,36 @@
 import React from 'react';
+import productReview, { ProductReview } from './models/ProductReview'
+
 
 export const ReviewList = (props) => (
 
     <div className ="m-2">
-        <h4>Product Reviews</h4>
-        <div className = "card">
-            <div className = "card-header">
-                ****
-            </div>
+        <h4>Product Reviews({props.length})</h4>
 
-            <div className="card-body p-2">
-                <div className="time float-right">
-                    date
-                </div>
-                <div className="author">
-                    name
-                </div>
-                
-                <p>comments</p>
+        {props.length&&
+            <div class="alert alert-primary" role="alert">
+                <strong>Be the first to add a reiview!</strong>   
             </div>
-        </div>
+        }
+
+        {!props.length&&
+             <div className = "card">
+                <div className = "card-header">
+                    {props.rating}
+                </div>
+
+                <div className="card-body p-2">
+                    <div className="time float-right">
+                        date
+                    </div>
+                    <div className="author">
+                        {props.userName}
+                    </div>
+                    
+                    <p>{props.comment}</p>
+                </div>
+            </div>
+        }
     </div>
 );
 
