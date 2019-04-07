@@ -1,22 +1,20 @@
 import React from 'react';
-import productReview, { ProductReview } from './models/ProductReview'
-
 
 export const ReviewList = (props) => (
 
     <div className ="m-2">
-        <h4>Product Reviews({props.length})</h4>
+        <h4>Product Reviews({props.reviews.length})</h4>
 
-        {props.length&&
+        {/* {props.length&& */}
             <div class="alert alert-primary" role="alert">
                 <strong>Be the first to add a reiview!</strong>   
             </div>
-        }
+        {/* } */}
 
-        {!props.length&&
+        {/* {!props.length&& */}
              <div className = "card">
                 <div className = "card-header">
-                    {props.rating}
+                    {props.reviews.rating}
                 </div>
 
                 <div className="card-body p-2">
@@ -24,13 +22,13 @@ export const ReviewList = (props) => (
                         date
                     </div>
                     <div className="author">
-                        {props.userName}
+                        {props.reviews.userName}
                     </div>
                     
-                    <p>{props.comment}</p>
+                    <p>{props.reviews.comment}</p>
                 </div>
             </div>
-        }
+        {/* } */}
     </div>
 );
 

@@ -48,7 +48,7 @@ export class ProductDetail extends React.Component{
                 </div>
                 </main>
 
-            <ReviewList reviewList = {this.state.product.reviews}/>
+            <ReviewList reviewList = {this.state.product}/>
             <ReviewForm onReviewAdded={a => this.onReviewAdded(a)}/>
             </>
         );
