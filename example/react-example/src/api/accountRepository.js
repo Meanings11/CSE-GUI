@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export class AccountRepository{
-        url = "https://api.john.com/directory/accounts";
+        url = "https://api.johnlawrimore.com/directory/accounts";
         options = {
             headers: {
-                Authorization: 'mingfu'
+                Authorization: 'jlawrimore'
             }
         };
 

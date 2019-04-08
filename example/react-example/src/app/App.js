@@ -11,7 +11,7 @@ class App extends Component {
   state ={
     editMode: false,
     accounts: [
-        new Account(1,"Mingfu","mingful@smu.edu",true,3)
+        new Account()
     ]
   };
 
