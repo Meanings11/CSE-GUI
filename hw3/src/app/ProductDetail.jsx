@@ -48,35 +48,7 @@ export class ProductDetail extends React.Component{
                 </div>
                 </main>
 
-            <div>
-                <h4>Product Reviews({this.state.product.reviews.length})</h4>
-            <div class="alert alert-primary" role="alert">
-                <strong>Be the first to add a reiview!</strong>   
-            <div>
-            {
-            this.state.product.reviews.map((r,i) =>
-             <div className = "card" key = {i}>
-                <div className = "card-header">
-                    {r.rating}
-                </div>
-
-                <div className="card-body p-2">
-                    <div className="time float-right">
-                        date
-                    </div>
-                    <div className="author">
-                        {r.userName}
-                    </div>
-                    
-                    <p>{r.comment}</p>
-                </div>
-                )}
-            </div>
-            </div>
-        {/* } */}
-        </div>
-
-            <ReviewList reviewList = {this.state.product.reviews}/>
+            <ReviewList reviews = {this.state.product.reviews}/>
             <ReviewForm onReviewAdded={a => this.onReviewAdded(a)}/>
             </>
         );

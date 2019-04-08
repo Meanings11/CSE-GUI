@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from './Rating'
-import productReview, { ProductReview } from './../models/ProductReview'
+import { ProductReview } from './../models/ProductReview'
 
 export class ReviewForm extends React.Component{
 

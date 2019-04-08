@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
+import {ProductReview} from './../models/ProductReview'
 
 export const ReviewList = (props) => (
     <>
     <div className ="m-2">
-        <h4>Product Reviews({props.length})</h4>
+        <h4>Product Reviews({props.reviews.length})</h4>
 
-        {/* {props.length&& */}
+        {!props.length&&
             <div class="alert alert-primary" role="alert">
                 <strong>Be the first to add a reiview!</strong>   
             </div>
-        {/* } */}
+        }
 
-        {/* {!props.length&& */}
+        {props.length&&
              <div className = "card">
                 <div className = "card-header">
                     {props.rating}
@@ -28,7 +29,7 @@ export const ReviewList = (props) => (
                     <p>{props.comment}</p>
                 </div>
             </div>
-        {/* } */}
+        }
     </div>
     </>
 );
