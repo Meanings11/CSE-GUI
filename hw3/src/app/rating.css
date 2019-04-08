@@ -1,15 +1,15 @@
-.star {
+.stars {
     font-size: 1.5rem;
     font-style: normal;
     position: relative;
     top: -.1em;
 }
 
-.star i {
+.stars i {
     font-style: normal;
 }
 
-.full-star::after {
+.full-star:after {
     content: "\2605";
 }
 

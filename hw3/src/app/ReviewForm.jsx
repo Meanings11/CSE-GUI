@@ -11,7 +11,19 @@ export class ReviewForm extends React.Component{
     }
 
     onSubmit(){
-        this.props.onReviewAdded(new ProductReview(this.state.userName, this.state.rating,this.state.comment, undefined));
+        var date = new Date();
+        var months = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+          ];
+        
+          var day = date.getDate();
+          var monthIndex = date.getMonth();
+          var year = date.getFullYear();
+
+        this.props.onReviewAdded(new ProductReview(this.state.userName, this.state.rating,this.state.comment, day + ' ' + months[monthIndex] + ', ' + year));
         this.setState({
             userName: '',
             rating: 0,
@@ -23,7 +35,7 @@ export class ReviewForm extends React.Component{
         return(
         <>
         <div className="card m-2">
-            <div className="card-header bg-secondary">
+            <div className="card-header bg-secondary font-weight-bold text-light">
                 Add Review
             </div>
 
@@ -37,7 +49,7 @@ export class ReviewForm extends React.Component{
                           />
                          </div>
 
-                         <div className="form-group col-md-2">
+                         <div className="form-group col-md-2 ml-2">
                            <label htmlFor="rating">Rating</label>
                            <select className="form-control" name="rating" id="rating"
                             value={this.state.rating}
@@ -50,6 +62,10 @@ export class ReviewForm extends React.Component{
                              <option key='5' value='5'>5</option>
                            </select>
                          </div>
+
+                        <div className = "star-display mt-4 ml-2 mb-4 pt-2 font-weight-light">
+                            <Rating value = {this.state.rating}/>
+                        </div>
                  </div>
                 <div className="form-group">
                        <label htmlFor="comment">Comment</label>

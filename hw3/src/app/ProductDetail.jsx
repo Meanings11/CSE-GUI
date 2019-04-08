@@ -9,7 +9,7 @@ export class ProductDetail extends React.Component{
     state = {
         product: new Product(
             1,
-            "Jif Peanut, 40 ounce",
+            "Jif Peanut Butter, 40 ounce",
             "7g of Protein per serving with no preservatives, artifical flavors or colors.", 
             7.99,
             "http://johnlawrimore.com/smu/101.png",
@@ -35,10 +35,10 @@ export class ProductDetail extends React.Component{
                     </ol>
                 </nav>
 
-                <div className ="jumbotron">
+                <div className ="jumbotron bg-light" style={{minHeight: '500px'}}>
                     <div className = "pb-5 pt-1">
                         <div className = "float-left product-img mr-4 ml-1">  
-                            <img src = {this.state.product.imageUrl} width="150" height="240"/>
+                            <img src = {this.state.product.imageUrl}/>
                         </div>
 
                         <h1>{this.state.product.name}</h1>
