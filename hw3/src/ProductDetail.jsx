@@ -36,9 +36,9 @@ export class ProductDetail extends React.Component{
                 </nav>
 
                 <div className ="jumbotron">
-                    <div className = "pb-5 pt-3">
-                        <div className = "float-left product-img mr-4 ml-2">  
-                            <img src = {this.state.product.imageUrl} width="180" height="280"/>
+                    <div className = "pb-5 pt-1">
+                        <div className = "float-left product-img mr-4 ml-1">  
+                            <img src = {this.state.product.imageUrl} width="150" height="240"/>
                         </div>
 
                         <h1>{this.state.product.name}</h1>
@@ -48,7 +48,7 @@ export class ProductDetail extends React.Component{
                 </div>
                 </main>
 
-            <ReviewList reviewList = {this.state.product}/>
+            <ReviewList reviewList = {this.state.product.reviews}/>
             <ReviewForm onReviewAdded={a => this.onReviewAdded(a)}/>
             </>
         );

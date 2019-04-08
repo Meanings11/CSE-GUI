@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 export const ReviewList = (props) => (
 
     <div className ="m-2">
-        <h4>Product Reviews({props.reviews.length})</h4>
+        <h4>Product Reviews({props.length})</h4>
 
         {/* {props.length&& */}
             <div class="alert alert-primary" role="alert">
@@ -14,7 +14,7 @@ export const ReviewList = (props) => (
         {/* {!props.length&& */}
              <div className = "card">
                 <div className = "card-header">
-                    {props.reviews.rating}
+                    {props.rating}
                 </div>
 
                 <div className="card-body p-2">
@@ -22,10 +22,10 @@ export const ReviewList = (props) => (
                         date
                     </div>
                     <div className="author">
-                        {props.reviews.userName}
+                        {props.userName}
                     </div>
                     
-                    <p>{props.reviews.comment}</p>
+                    <p>{props.comment}</p>
                 </div>
             </div>
         {/* } */}
