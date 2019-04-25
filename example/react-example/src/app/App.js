@@ -4,9 +4,13 @@ import {AccountEditor} from './AccountEditor';
 import {AccountList} from './AccountList.jsx';
 import {Account} from './../models/account';
 import {AccountRepository} from './../api/accountRepository';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import AccountLanding from './AccountLanding';
+
+import routers from './../routers.js';
+
 
 class App extends Component {
-  accountRepository = new AccountRepository;
 
   state ={
     editMode: false,
@@ -30,18 +34,17 @@ class App extends Component {
     });
   }
 
-  componentDidMount(){
-    this.accountRepository.getAccounts()
-    .then(accounts => this.setState({accounts}));
-  }
-
   render() {
     return (
       //blank tag to render all children
       <>
         <Header editMode={this.state.editMode} toggleEditMode={() => this.onToggleEditMode()}/>
-         { this.state.editMode && <AccountEditor onNewAccount={a =>this.onNewAccount(a)} />}
-         { !this.state.editMode && <AccountList accounts ={this.state.accounts}/>}
+
+        <Router>
+          <Switch>
+            {}
+          </Switch>
+        </Router>
       </>
     );
   }

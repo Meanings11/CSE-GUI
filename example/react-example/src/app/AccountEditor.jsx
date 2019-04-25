@@ -1,86 +1,105 @@
-import React, {Component} from 'react';
-import {Department} from '../models/department';
-import {Account} from './../models/account';
+import React, { Component } from 'react';
+import { Account, Department } from './../models';
+import { AccountRepository} from "./../api/accountRepository";
+import { Redirect} from 'react-router-dom';
 
+export class AccountEditor extends React.Component {
+    accountRepository = new AccountRepository;
 
-export class AccountEditor extends React.Component{
     departments = [
-        new Department(1,"HR"),
-        new Department(2,"Marketing"),
-        new Department(3,"Accouting"),
-        new Department(4,"IT"),
+        new Department(1, "HR"),
+        new Department(2, "Marketing"),
+        new Department(3, "Accounting"),
+        new Department(4, "IT")
     ];
+
     state = {
         name: '',
         email: '',
-        isEmployer: false,
-        departmentId: 0
+        isEmployee: false,
+        departentId: 0,
+        redirect: ''
     };
 
-    onSubmit(){
-        this.props.onNewAccount(new Account(undefined,this.state.name, this.state.email,this.state.isEmployer,this.state.departmentId))
-        
-    };
+    onSubmit() {
+        let accountId = +this.props.match.params.accountId;
+        if(accountId){
+            this.accountRepository.updateAccount(accountId,this.state)
+                .then(() => this.setState({redirect:'/'}));
+        } else {
+            this.accountRepository.addAccount(this.state)
+                .then(() => this.setState({redirect:'/'}));
+        }
+    }
 
-    render(){
+    render() {
+        if (this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         return (
-            <form onSubmit={e => this.onSubmit()} >
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" 
-                    id="name" 
-                    name="name"
-                    className="form-control"
-                    value={this.state.name} //set name first two way binding
-                    onChange={e => this.setState({name: e.target.value})}/> 
-                </div>
+            <>
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <input type="text"
+                            id="name"
+                            name="name"
+                            className="form-control"
+                            value={this.state.name}
+                            onChange={e => this.setState({ name: e.target.value })} />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="text" 
-                    id="email" 
-                    name="email"
-                    className="form-control"
-                    value={this.state.email} //set name first two way binding
-                    onChange={e => this.setState({email: e.target.value})}/> 
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="text"
+                            id="email"
+                            name="email"
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={e => this.setState({ email: e.target.value })} />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="isEmployer">
-                    <input type="checkbox" 
-                    id="isEmployer" 
-                    name="isEmployer"
-                    value={this.state.isEmployer} //set name first two way binding
-                    onChange={e => this.setState({isEmployer: e.target.checked})}/> 
-                    isEmployer
+                    <div className="form-group">
+                        <label htmlFor="isEmployee">
+                            <input type="checkbox"
+                                id="isEmployee"
+                                name="isEmployee"
+                                checked={this.state.isEmployee}
+                                onChange={e => this.setState({ isEmployee: e.target.checked })} />
+                            Is Employee
                     </label>
-                </div>
+                    </div>
 
-
-                <div className="form-group">
-                    <label htmlFor="email">Department</label>
-                    <select id="departmentId" 
-                    name="departmentId"
-                    className="form-control"
-                    value={this.state.departmentId} //set name first two way binding
-                    onChange={e => this.setState({departmentId: e.target.value})}> 
-                    
-                    <option></option>
-                    {
-                        this.departments.map(d => <option key = {d.id} value={d.id}>{d.name}</option>)
-                    }
-                    </select>
+                    <div className="form-group">
+                        <label htmlFor="departentId">Department</label>
+                        <select id="departentId"
+                            name="departentId"
+                            className="form-control"
+                            value={this.state.departentId}
+                            onChange={e => this.setState({ departentId: e.target.value })} >
+                            <option></option>
+                            {
+                                this.departments.map(d => <option key={d.id} value={d.id}>{d.name}</option>)
+                            }
+                        </select>
+                    </div>
+                </form>
+                <div>
+                    <button onClick={e => this.onSubmit()}
+                            className="btn btn-primary">
+                        Save
+                    </button>
                 </div>
-            
-            <div>
-                <button className="btn btn-primary"
-                        onClick= {e=>this.onSubmit()}
-                    >
-                    Save
-                </button>
-            </div>
-            </form>
+            </>
         );
+    }
+
+    componentDidMount(){
+        let accountId = +this.props.match.params.accountId;
+        if(accountId){
+            this.accountRepository.getAccount(accountId)
+            .then(account => this.setState(account));
+        }
     }
 }
 

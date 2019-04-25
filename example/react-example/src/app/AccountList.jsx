@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from "react-router-dom";
 
 export const AccountList = (props) => (
     <div>
@@ -7,18 +8,24 @@ export const AccountList = (props) => (
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Employer</th>
+                    <th>Employee</th>
                     <th>Department</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    props.accounts.map((a, i) => 
-                        <tr key = {i}>
-                            <td>{a.name}</td>            
-                            <td>{a.email}</td>            
-                            <td>{a.isEmployer ? "Yes" : "No"}</td>            
-                            <td>{a.departmentId}</td>            
+                    props.accounts.map((a, i) =>
+                        <tr key={i}>
+                            <Link to={'/edit/${a.id}'}>{ a.name }</Link>
+                            <td>{ a.email }</td>
+                            <td>{ a.isEmployee ? "Y" : "N" }</td>
+                            <td>{ a.departmentId }</td>
+                            <td>
+                                <button className="btn btn-sm btn-danger"
+                                    onClick={e=>props.onDelete(e.id)}>
+                                    <i className="fa fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     )
                 }
@@ -27,4 +34,4 @@ export const AccountList = (props) => (
     </div>
 );
 
-export default AccountList
+export default AccountList;
