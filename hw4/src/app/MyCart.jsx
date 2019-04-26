@@ -18,7 +18,7 @@ class MyCart extends React.Component {
                 <table className="table table-striped table-condensed">
                 <thead>
                     <tr>
-                        <th>Qty</th>·
+                        <th>Qty</th>
                         <th>Product</th>
                         <th>Total</th>
                     </tr>
@@ -33,6 +33,9 @@ class MyCart extends React.Component {
                             </tr>
                         )
                     }
+                    <td></td>
+                    <td></td>
+                    <td>{this.state.total}</td>
                 </tbody>
             </table>
         </div>
