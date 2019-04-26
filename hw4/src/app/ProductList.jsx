@@ -34,12 +34,10 @@ export class ProductList extends React.Component {
 							<h4 className="card-title">{p.name}</h4>
 							<div className="card-text">
                                     <Link to={`/products/${p.id}`} className="btn btn-info btn-lg btn-block">
-                                    {/* <Link to="/products" className="btn btn-info btn-lg btn-block"> */}
-                                    
                                         Product Details
                                     </Link>
 
-                                    <button className="btn btn-warning btn-lg btn-block mt-1">
+                                    <button className="btn btn-warning btn-lg btn-block mt-2">
                                         Add to Cart
                                     </button>
 							</div>

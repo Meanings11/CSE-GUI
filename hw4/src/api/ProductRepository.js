@@ -26,4 +26,12 @@ export class ProductRepository {
                 .catch(resp=> alert(resp));
         });
     }
+
+    addReview(productId, review){
+        return new Promise((resolve, reject) => {
+            axios.post(`${this.url}/${productId}/reviews`, review, this.config)
+                .then(resp => resolve(resp.data))
+                .catch(resp => alert(resp));
+        });
+    }
 }

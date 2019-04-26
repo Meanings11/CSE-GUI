@@ -24,6 +24,8 @@ export class ProductDetail extends React.Component{
                 state.reviews.push(review);
                 return state;
             });
+
+            this.productRepository.addReview(this.state.id,review);
     };
 
     render(){
@@ -43,7 +45,7 @@ export class ProductDetail extends React.Component{
                         <div className="row">
                             
                             <div className = "col-md-4 p-3">  
-                                <img src = { 'http://johnlawrimore.com/smu/'+this.state.imageName}  className="img-fluid" alt="Responsive image"/>
+                                <img src = { `http://johnlawrimore.com/smu/${this.state.imageName}`}  className="img-fluid" alt="Responsive image"/>
                             </div>
 
                             <div className = "col-md-6 p-3">
@@ -73,6 +75,7 @@ export class ProductDetail extends React.Component{
                 .then(product => this.setState(product))
         }
     }
+
 
 }
 export default ProductDetail;
