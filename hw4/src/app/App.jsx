@@ -8,9 +8,10 @@ class App extends Component {
   render() {
     return (
       <>
-      <Header/>
+      
 
         <Router>
+          <Header/>
 					<Switch>
 						{ ROUTES.map(x=><Route key={x.path}{...x}/>)}
 					</Switch>

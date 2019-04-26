@@ -21,7 +21,7 @@ export class ProductDetail extends React.Component{
 
     onReviewAdded(review){
             this.setState(state =>{
-                state.product.reviews.push(review);
+                state.reviews.push(review);
                 return state;
             });
     };
@@ -32,7 +32,7 @@ export class ProductDetail extends React.Component{
             <div className="container">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Tasty snacks</a></li>
+                        <li className="breadcrumb-item"><Link to='/' >Tasty snacks</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">{this.state.name}</li>  
                     </ol>
                 </nav>
@@ -42,11 +42,11 @@ export class ProductDetail extends React.Component{
 
                         <div className="row">
                             
-                            <div className = "col-md-4 p-0">  
-                                <img src = {this.state.imageName}  className="img-fluid" alt="Responsive image"/>
+                            <div className = "col-md-4 p-3">  
+                                <img src = { 'http://johnlawrimore.com/smu/'+this.state.imageName}  className="img-fluid" alt="Responsive image"/>
                             </div>
 
-                            <div className = "col-md-6 p-0">
+                            <div className = "col-md-6 p-3">
                                 <h1>{this.state.name}</h1>
                                 <h3><span className="badge badge-lg badge-primary">${this.state.price}</span></h3>
                                 <p>{this.state.description}</p>
@@ -74,10 +74,5 @@ export class ProductDetail extends React.Component{
         }
     }
 
-    //  componentDidMount() {
-	// 	console.log("Product Detail Mount Function");
-    //         this.productRepository.getProduct(1)
-    //             .then(product => this.setState(product))
-    // }
 }
 export default ProductDetail;
