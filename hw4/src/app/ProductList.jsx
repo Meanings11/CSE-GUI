@@ -25,7 +25,7 @@ export class ProductList extends React.Component {
 		<div className="row">
 			{
 				this.state.products.map((p, i) =>
-				<div className="col-sm-6 col-md-6 col-lg-4 mt-4 d-flex align-items-stretch" key={i}>
+				<div className="col-sm-6 col-md-4 col-lg-4 mt-4 d-flex align-items-stretch" key={i}>
 					<div className="card">
                         <div className="p-2">
 						    <img className="card-img-top" alt={'p.id Responsive Image'} src={'http://johnlawrimore.com/smu/'+ p.imageName} />
