@@ -39,21 +39,21 @@ export class ProductDetail extends React.Component{
                     </ol>
                 </nav>
 
-                <div className ="jumbotron bg-light jumbotron-fluid ">
+                <div className ="jumbotron bg-light jumbotron-fluid">
                     <div className="container-fluid">
 
                         <div className="row">
                             
-                            <div className = "col-md-4 p-3">  
+                            <div className = "col-md-5 p-5">  
                                 <img src = { `http://johnlawrimore.com/smu/${this.state.imageName}`}  className="img-fluid" alt="Responsive image"/>
                             </div>
 
-                            <div className = "col-md-6 pt-0 pr-0 pl-3">
-                                <h4>{this.state.name}</h4>
+                            <div className = "col-md-6 pt-0 pr-5 pl-3">
+                                <h3>{this.state.name}</h3>
                                 <h3><span className="badge badge-lg badge-primary">${this.state.price}</span></h3>
                                 <p>{this.state.description}</p>
 
-                                <Link to="/cart" className="btn btn-warning float-right mt-3 mr-3"
+                                <Link to="/cart" className="btn btn-warning float-right mt-5 mr-3"
                                         onClick={()=> this.cartService.addToCart(this.state)}>
                                         Add to Cart
                                     </Link>

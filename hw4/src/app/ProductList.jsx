@@ -9,11 +9,14 @@ export class ProductList extends React.Component {
     productRepository = new ProductRepository();
     cartService = new CartService();
 
+    
+
     state = {
         products:[]
     }
 
     render(){
+
         return(
         <div className="container">
 
@@ -32,18 +35,18 @@ export class ProductList extends React.Component {
                             <div className="badge badge-success float-right">${p.price}</div>
                         </div>
 
-                    	<div className="card-block p-2">
+                    	<div className="card-body d-flex flex-column p-2 ">
 							<h4 className="card-title">{p.name}</h4>
-							<div className="card-text">
-                                    <Link to={`/products/${p.id}`} className="btn btn-info btn-lg btn-block">
+							<div className="card-text mt-auto">
+                                    <Link to={`/products/${p.id}`} className="btn btn-info btn-lg btn-block ">
                                         Product Details
                                     </Link>
 
-                                    <Link to={'/cart'} className="btn btn-warning btn-lg btn-block mt-2"
+                                    <Link to={'/cart'} className="btn btn-warning btn-lg btn-block mt-1 "
                                         onClick={()=> this.cartService.addToCart(p)}>
                                         Add to Cart
                                     </Link>
-							</div>
+							 </div>
 						</div>
 					</div>
 				</div>
