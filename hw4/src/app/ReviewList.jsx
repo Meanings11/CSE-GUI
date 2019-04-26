@@ -3,7 +3,6 @@ import {ProductReview} from './../models/ProductReview'
 import Rating from './Rating'
 
 export const ReviewList = (props) => (
-    <>
     <div className ="m-2">
         <h4>Product Reviews({props.reviews.length})</h4>
 
@@ -38,7 +37,6 @@ export const ReviewList = (props) => (
         </div>
         }
     </div>
-    </>
 );
 
 export default ReviewList;

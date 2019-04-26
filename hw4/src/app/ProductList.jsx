@@ -1,6 +1,7 @@
 import React from 'react';
 import {Product} from './../models/Product';
 import {ProductRepository} from './../api/ProductRepository';
+import {Link} from 'react-router-dom';
 
 export class ProductList extends React.Component {
     
@@ -22,19 +23,21 @@ export class ProductList extends React.Component {
 		<div className="row">
 			{
 				this.state.products.map((p, i) =>
-				<div className="col-sm-6 col-md-6 col-lg-4 mt-4 d-flex align-items-stretch">
+				<div className="col-sm-6 col-md-6 col-lg-4 mt-4 d-flex align-items-stretch" key={i}>
 					<div className="card">
                         <div className="p-2">
 						    <img className="card-img-top" alt={'p.id Responsive Image'} src={'http://johnlawrimore.com/smu/'+ p.imageName} />
-                            <float className="badge badge-success float-right">${p.price}</float>
+                            <div className="badge badge-success float-right">${p.price}</div>
                         </div>
 
                     	<div className="card-block p-2">
 							<h4 className="card-title">{p.name}</h4>
 							<div className="card-text">
-                                    <button className="btn btn-info btn-lg btn-block">
+                                    <Link to={`/products/${p.id}`} className="btn btn-info btn-lg btn-block">
+                                    {/* <Link to="/products" className="btn btn-info btn-lg btn-block"> */}
+                                    
                                         Product Details
-                                    </button>
+                                    </Link>
 
                                     <button className="btn btn-warning btn-lg btn-block mt-1">
                                         Add to Cart
@@ -57,6 +60,8 @@ export class ProductList extends React.Component {
             this.setState({products: product});
         });
     }
+
+    
     
 };
 

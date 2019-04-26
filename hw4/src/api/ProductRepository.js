@@ -17,4 +17,13 @@ export class ProductRepository {
                 .catch(resp=> alert(resp));
         });
     }
+
+    getProduct(productId){
+        return new Promise((resolve,reject)=>{
+            console.log("Getting Products")
+            axios.get(`${this.url}/${productId}`,this.config)
+                .then(resp=> resolve(resp.data))
+                .catch(resp=> alert(resp));
+        });
+    }
 }

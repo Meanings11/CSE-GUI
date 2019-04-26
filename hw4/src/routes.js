@@ -1,9 +1,13 @@
-import ProductList from "./ProductList";
-import ProductDetail from "./ProductDetail";
+import {ProductList} from "./app/ProductList";
+import {ProductDetail}  from "./app/ProductDetail";
 
 export const ROUTES = [
+    { path: '/products/:productId',component:ProductDetail},
+
+    // {path: '/products', component: ProductDetail},   
     { path: '/', component: ProductList},
-    { path: '/products/productId',component:ProductDetail}
+    
+    
 ];
 
 export default ROUTES;
