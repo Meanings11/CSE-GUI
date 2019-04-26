@@ -41,7 +41,7 @@ export class ProductDetail extends React.Component{
                         <div className="row">
                             
                             <div className = "col-md-4 p-0">  
-                                <img src = {this.state.product.imageUrl}  className="img-fluid" alt="Responsive image"/>
+                                <img src = {this.state.product.imageName}  className="img-fluid" alt="Responsive image"/>
                             </div>
 
                             <div className = "col-md-6 p-0">

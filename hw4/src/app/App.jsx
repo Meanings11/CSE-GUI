@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import ProductDetail from './ProductDetail';
+import Header from './Header';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import ROUTES from '../routes'
 class App extends Component {
   render() {
     return (
       <>
-        <ProductDetail/>
+        <Header/>
+        <ProductList/>
       </>
     );
   }
