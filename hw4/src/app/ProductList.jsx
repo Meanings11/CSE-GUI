@@ -2,10 +2,12 @@ import React from 'react';
 import {Product} from './../models/Product';
 import {ProductRepository} from './../api/ProductRepository';
 import {Link} from 'react-router-dom';
+import CartService from './../services/cartService';
 
 export class ProductList extends React.Component {
     
     productRepository = new ProductRepository();
+    cartService = new CartService();
 
     state = {
         products:[]
@@ -37,9 +39,10 @@ export class ProductList extends React.Component {
                                         Product Details
                                     </Link>
 
-                                    <button className="btn btn-warning btn-lg btn-block mt-2">
+                                    <Link to={'/cart'} className="btn btn-warning btn-lg btn-block mt-2"
+                                        onClick={()=> this.cartService.addToCart(p)}>
                                         Add to Cart
-                                    </button>
+                                    </Link>
 							</div>
 						</div>
 					</div>
