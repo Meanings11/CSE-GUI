@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {Product} from './../models/Product';
-import {ProductReview} from './../models/ProductReview';
 import {ReviewList} from './ReviewList';
 import {ReviewForm} from './ReviewForm';
 import { ProductRepository } from '../api/ProductRepository';
 import { Link } from 'react-router-dom';
+import CartService from './../services/cartService'
 
 
 export class ProductDetail extends React.Component{
     productRepository = new ProductRepository;
+    cartService = new CartService();
     
     state = {
         id: 0,
@@ -39,7 +39,7 @@ export class ProductDetail extends React.Component{
                     </ol>
                 </nav>
 
-                <div className ="jumbotron bg-light jumbotron-fluid">
+                <div className ="jumbotron bg-light jumbotron-fluid ">
                     <div className="container-fluid">
 
                         <div className="row">
@@ -48,13 +48,20 @@ export class ProductDetail extends React.Component{
                                 <img src = { `http://johnlawrimore.com/smu/${this.state.imageName}`}  className="img-fluid" alt="Responsive image"/>
                             </div>
 
-                            <div className = "col-md-6 p-3">
-                                <h1>{this.state.name}</h1>
+                            <div className = "col-md-6 pt-0 pr-0 pl-3">
+                                <h4>{this.state.name}</h4>
                                 <h3><span className="badge badge-lg badge-primary">${this.state.price}</span></h3>
                                 <p>{this.state.description}</p>
+
+                                <Link to="/cart" className="btn btn-warning float-right mt-3 mr-3"
+                                        onClick={()=> this.cartService.addToCart(this.state)}>
+                                        Add to Cart
+                                    </Link>
                             </div>
 
+                            
                         </div>
+
                     </div>
                 </div>
                 

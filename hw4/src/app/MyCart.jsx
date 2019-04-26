@@ -28,14 +28,14 @@ class MyCart extends React.Component {
                         this.state.items.map((a, i) =>
                             <tr key={i}>
                                 <td>{ a.quantity }</td>
-                                <td>{ a.product.name+ a.product.price}</td>
-                                <td>{ a.totalPrice }</td>
+                                <td>{ a.product.name + " -$" +a.product.price}</td>
+                                <td>${ a.totalPrice }</td>
                             </tr>
                         )
                     }
                     <td></td>
                     <td></td>
-                    <td>{this.state.total}</td>
+                    <td>${this.state.total}</td>
                 </tbody>
             </table>
         </div>
